@@ -1,0 +1,17 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/rust:1
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+          - cargo-{{ checksum "Cargo.lock" }}
+          - cargo-
+      - run: cargo test
+      - save_cache:
+          key: cargo-{{ checksum "Cargo.lock" }}
+          paths:
+            - ~/.cargo
+            - target
