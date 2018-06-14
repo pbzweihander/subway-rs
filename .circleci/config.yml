@@ -9,6 +9,7 @@ jobs:
           keys:
           - cargo-{{ checksum "Cargo.lock" }}
           - cargo-
+      - run: rustc --version
       - run: cargo test
       - save_cache:
           key: cargo-{{ checksum "Cargo.lock" }}
