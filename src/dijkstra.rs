@@ -93,9 +93,7 @@ where
         starts: impl IntoIterator<Item = &'a V>,
         ends: impl IntoIterator<Item = &'a V>,
     ) -> (Vec<&'a V>, W) {
-        let mut weights: Vec<_> = iter::repeat_with(W::infinity)
-            .take(self.graph.len())
-            .collect();
+        let mut weights: Vec<_> = iter::repeat(W::infinity()).take(self.graph.len()).collect();
         let mut unvisiteds = BinaryHeap::<UnvisitedVertex<W>>::new();
 
         let start_set = HashSet::<usize>::from_iter(
